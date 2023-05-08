@@ -40,17 +40,26 @@ router.post('/upload', async(req,res)=>{
   }
 });
 
-router.get('/search', (req, res) => {
-  const searchTerm = req.body; 
+router.get('/search/:tags', async (req, res) => {
 
-  UploadModel.find({ $or: [{tags: { $regex: new RegExp(searchTerm,'i')}}, { description: { $regex: new RegExp(searchTerm,'i')}}]})
-    .then(results => {
-      res.send(results); 
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send('Internal server error');
-    });
+  const searchTerm = new RegExp(req.params?.tags,'i');
+  
+  if(searchTerm!==''){
+    try{
+      const searchResults = await UploadModel.find({ tags : searchTerm});
+      if(searchResults.length === 0){
+        res.status(404).json({message :"No Image found"})
+      }
+      else res.send(searchResults);
+    }
+    catch(error){
+      console.log(error);
+      res.status(404).json({message :"No Image found"})
+    }
+  }
+  else{
+    res.status(404).json({message :"No Image found"})
+  }
 });
 
 module.exports = router;
