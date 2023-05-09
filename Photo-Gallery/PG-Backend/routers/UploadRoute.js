@@ -21,21 +21,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     const image = new UploadModel(req.body);
       await image.save();
       res.json(image);
-      console.log(image);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Failed to save image.' });
-  }
-});
-
-router.post('/upload', async(req,res)=>{
-  try{
-    const data = new UploadModel(req.body);
-    await data.save();
-    res.json(data);
-  }
-  catch(error){
-    console.log(eror);
     res.status(500).json({ message: 'Failed to save image.' });
   }
 });
