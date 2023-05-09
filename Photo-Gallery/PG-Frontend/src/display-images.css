@@ -21,16 +21,16 @@
 }
 
 .display img {
-  padding: 20px;
-  height: 250px;
-  width: 320px;
+  padding: 10px;
+  height: 180px;
+  width: 250px;
   object-fit: cover;
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 .container1 p {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15px;
   align-items: center;
 }
 .display .error{
