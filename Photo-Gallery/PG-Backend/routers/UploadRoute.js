@@ -6,6 +6,7 @@ const router = Router();
 
 router.get("/get", async (req, res) => {
   const allPhotos = await UploadModel.find();
+  allPhotos.reverse();
   res.send(allPhotos);
 });
 const storage = multer.diskStorage({
